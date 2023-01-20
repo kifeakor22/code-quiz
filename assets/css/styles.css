@@ -30,6 +30,12 @@ button:hover {
   background-color: #8570a5;
 }
 
+.choice {
+  background-color: #331c55;
+  width: 50%;
+  text-align: center;
+}
+
 .choices button {
   display: block;
 }
@@ -61,6 +67,8 @@ li:nth-child(odd) {
 .hide {
   display: none;
 }
+
+
 
 .start {
   text-align: center;
