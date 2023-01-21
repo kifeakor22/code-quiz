@@ -3,9 +3,10 @@ let timeSpan = document.getElementById("time")
 let questionDiv =document.getElementById("questions")
 let questionTitle = document.getElementById("question-title")
 let choices = document.getElementById("choices")
+let end = document.getElementById("end-screen")
+let finaScore = document.getElementById("final-score")
 let time = 0;
-
-let score =
+let timeInterval
 
 startBtn.addEventListener("click", function(event){
     event.preventDefault()
@@ -18,7 +19,7 @@ function startTimer() {
   // first set time to start at 0
    time = 60;  
   // Use the `setInterval()` method to set time interval
-  var timeInterval = setInterval(function () {  // use the setinterval method that takes a function
+   timeInterval = setInterval(function () {  // use the setinterval method that takes a function
     time--;  // increment time
     timeSpan.textContent = `${time} seconds`;  // populate html time span with time
 
@@ -36,7 +37,8 @@ function startTimer() {
   },1000);  // set speed of timer
 }
 
-let currentQuestionIndex = 0
+let currentQuestionIndex = 0;
+let score =0;
 
 displayQuestion = function(questionTO) {
     questionDiv.setAttribute("class","start")
@@ -53,45 +55,49 @@ displayQuestion = function(questionTO) {
         choiceBtn.classList.add("choice");
         choiceBtn.textContent = choice.text;
         choiceBtn.addEventListener("click", function() {
-            if(choice) {
+            if(choice.isCorrect) {
+                score++;
                 currentQuestionIndex++;
                 if(currentQuestionIndex < questionTO.length) {
                     displayQuestion(questionTO);
                 } else {
+                    endGame()
+                    clearInterval(timeInterval)
                     // all questions have been answered, display final message
-                    
                 }
             } else {
-                // display message for incorrect answer
+                // if choice is incorrect
+                time-=10
+                if(time >0) {
+                    currentQuestionIndex++;
+                    if(currentQuestionIndex < questionTO.length){
+                        displayQuestion(questionTO);
+                    }else {
+                        endGame()
+                        clearInterval(timeInterval)
+                    }
+                }else {
+                    endGame()
+                    clearInterval(timeInterval)
+                }
             }
         });
-        choices.appendChild(choiceBtn);
-    }
+    } 
+   
+}
+
+endGame = function () {
+    end.setAttribute("class","start")
+    questionDiv.setAttribute("class","hide")
+    finaScore.textContent  = score
+
 }
 
 
     
-    //for(i=0;i<questionTO.length ;i++){
-       //quest = questionTO[i].question
-      //questionTitle.textContent = quest
+    
     
    
 
 
 
-// displayQuestion = function(questionTO) {
-   // questionDiv.setAttribute("class","start")
-    //document.getElementById("start-screen").setAttribute("class","hide")
-    //let currentQestion = questionTO[currentQuestionIndex]
-    //questionTitle.textContent = currentQestion.prompt;
-   // choices.textContent = " "
-
-     // if(quest){
-       // choice = questionTO[i].choices
-       // for(j=0; j<choice.length;j++){
-           // ans = choice[j].text
-       //  }
-    //  }
-//}
-    
-//}
