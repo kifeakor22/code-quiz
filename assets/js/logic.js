@@ -8,34 +8,35 @@ let finaScore = document.getElementById("final-score")
 let submit = document.getElementById("submit")
 let initials = document.getElementById("initials")
 let time = 0;
-let timeInterval
+let timeInterval;
+let currentQuestionIndex = 0;
+let score =0;
 
 startBtn.addEventListener("click", function(event){
     event.preventDefault()
     startTimer()
-    displayQuestion(questions)
+    if(time > 0){
+        displayQuestion(questions)
+    }else {
+        endGame()
+    }
+    
 })
 
 // start time function 
 function startTimer() {   
-  // first set time to start at 0
    time = 60;  
-  // Use the `setInterval()` method to set time interval
-   timeInterval = setInterval(function () {  // use the setinterval method that takes a function
-    time--;  // increment time
-    timeSpan.textContent = `${time} seconds`;  // populate html time span with time
-
-
-    // stop countdown once timer hits 0 or condition to stop timer
-
-if(time === 0) {
+   timeInterval = setInterval(function () {
+    time--; 
+    timeSpan.textContent = `${time} seconds`; 
+    if(time === 0) {
       clearInterval(timeInterval); // clearinterval takes setinterval as argument
+      endGame()
     }
-  },1000);  // set speed of timer
+  },1000);  
 }
 
-let currentQuestionIndex = 0;
-let score =0;
+
 
 displayQuestion = function(questions) {
     questionDiv.setAttribute("class","start")
@@ -51,11 +52,12 @@ displayQuestion = function(questions) {
         choices.appendChild(choiceList)
         choiceBtn.classList.add("choice");
         choiceBtn.textContent = choice.text;
-        choiceBtn.addEventListener("click", function() {
+        choiceBtn.addEventListener("click", function(event) {
+            event.preventDefault()
             if(choice.isCorrect) {
                 score++;
                 currentQuestionIndex++;
-                if(currentQuestionIndex < questions.length) {
+                if((currentQuestionIndex < questions.length)||(time > 0)) {
                     displayQuestion(questions);
                 } else {
                     endGame()
