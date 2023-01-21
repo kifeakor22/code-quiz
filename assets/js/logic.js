@@ -5,13 +5,15 @@ let questionTitle = document.getElementById("question-title")
 let choices = document.getElementById("choices")
 let end = document.getElementById("end-screen")
 let finaScore = document.getElementById("final-score")
+let submit = document.getElementById("submit")
+let initials = document.getElementById("initials")
 let time = 0;
 let timeInterval
 
 startBtn.addEventListener("click", function(event){
     event.preventDefault()
     startTimer()
-    displayQuestion(questionTO)
+    displayQuestion(questions)
 })
 
 // start time function 
@@ -26,24 +28,19 @@ function startTimer() {
 
     // stop countdown once timer hits 0 or condition to stop timer
 
-    if(time === 0) {
+if(time === 0) {
       clearInterval(timeInterval); // clearinterval takes setinterval as argument
-      // run a function here 
     }
-
-    //
-    // YOUR CODE HERE
-    //
   },1000);  // set speed of timer
 }
 
 let currentQuestionIndex = 0;
 let score =0;
 
-displayQuestion = function(questionTO) {
+displayQuestion = function(questions) {
     questionDiv.setAttribute("class","start")
     document.getElementById("start-screen").setAttribute("class","hide")
-    let currentQuestion = questionTO[currentQuestionIndex];
+    let currentQuestion = questions[currentQuestionIndex];
     questionTitle.textContent = currentQuestion.question;
     choices.textContent = ""; // clear any previous choices
     for(let i = 0; i < currentQuestion.choices.length; i++) {
@@ -58,8 +55,8 @@ displayQuestion = function(questionTO) {
             if(choice.isCorrect) {
                 score++;
                 currentQuestionIndex++;
-                if(currentQuestionIndex < questionTO.length) {
-                    displayQuestion(questionTO);
+                if(currentQuestionIndex < questions.length) {
+                    displayQuestion(questions);
                 } else {
                     endGame()
                     clearInterval(timeInterval)
@@ -70,8 +67,8 @@ displayQuestion = function(questionTO) {
                 time-=10
                 if(time >0) {
                     currentQuestionIndex++;
-                    if(currentQuestionIndex < questionTO.length){
-                        displayQuestion(questionTO);
+                    if(currentQuestionIndex < questions.length){
+                        displayQuestion(questions);
                     }else {
                         endGame()
                         clearInterval(timeInterval)
@@ -90,6 +87,12 @@ endGame = function () {
     end.setAttribute("class","start")
     questionDiv.setAttribute("class","hide")
     finaScore.textContent  = score
+    submit.addEventListener("click",function(){
+        let name = initials.value
+        localStorage.setItem("name",name)
+        localStorage.setItem("score",score)
+        window.location = "highscores.html"
+    })
 
 }
 

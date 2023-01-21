@@ -1,6 +1,6 @@
 
 
-const questionTO = [
+const questions = [
     {
         question: "Javascript is an _______ language?",
         choices: [
