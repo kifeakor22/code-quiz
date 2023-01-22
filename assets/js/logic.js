@@ -7,6 +7,7 @@ let end = document.getElementById("end-screen")
 let finaScore = document.getElementById("final-score")
 let submit = document.getElementById("submit")
 let initials = document.getElementById("initials")
+let feedback = document.getElementById("feedback")
 let time = 0;
 let timeInterval;
 let currentQuestionIndex = 0;
@@ -40,12 +41,15 @@ function startTimer() {
 
 
 
+
+
 displayQuestion = function(questions) {
     questionDiv.setAttribute("class","start")
     document.getElementById("start-screen").setAttribute("class","hide")
     let currentQuestion = questions[currentQuestionIndex];
     questionTitle.textContent = currentQuestion.question;
     choices.textContent = ""; // clear any previous choices
+    
     for(let i = 0; i < currentQuestion.choices.length; i++) {
         let choice = currentQuestion.choices[i];
         let choiceList = document.createElement("ol")
@@ -57,9 +61,11 @@ displayQuestion = function(questions) {
         choiceBtn.addEventListener("click", function(event) {
             event.preventDefault()
             if(choice.isCorrect) {
+                 feedback.setAttribute("class", "correct")
+                 feedback.textContent = "Correct"
                 score++;
                 currentQuestionIndex++;
-                if(currentQuestionIndex < questions.length) {
+                if(currentQuestionIndex < questions.length) { 
                     displayQuestion(questions);
                 } else {
                     endGame()
@@ -70,6 +76,8 @@ displayQuestion = function(questions) {
                 // if choice is incorrect
                 time-=10
                 if(time >0) {
+                    feedback.setAttribute("class", "wrong")
+                    feedback.textContent = "Wrong!"
                     currentQuestionIndex++;
                     if(currentQuestionIndex < questions.length){
                         displayQuestion(questions);
@@ -85,6 +93,19 @@ displayQuestion = function(questions) {
         });
     } 
    
+}
+
+function showFeedback() {
+    if(choice.isCorrect){
+        feedback.setAttribute("class", "start")
+        feedback.textContent = "Correct"
+    } else if(!choice.isCorrect) {
+        feedback.setAttribute("class", "start")
+        feedback.textContent = "incorrect"
+    }else {
+        feedback.setAttribute("class", "hide")
+    }
+     
 }
 
 endGame = function () {
