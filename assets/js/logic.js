@@ -8,6 +8,7 @@ let finaScore = document.getElementById("final-score")
 let submit = document.getElementById("submit")
 let initials = document.getElementById("initials")
 let feedback = document.getElementById("feedback")
+let questImage = document.getElementById("questImage")
 let time = 0;
 let timeInterval;
 let currentQuestionIndex = 0;
@@ -48,6 +49,11 @@ displayQuestion = function(questions) {
     document.getElementById("start-screen").setAttribute("class","hide")
     let currentQuestion = questions[currentQuestionIndex];
     questionTitle.textContent = currentQuestion.question;
+    if(currentQuestion.image){
+        questImage.src = currentQuestion.image
+    }
+    
+
     choices.textContent = ""; // clear any previous choices
     
     for(let i = 0; i < currentQuestion.choices.length; i++) {

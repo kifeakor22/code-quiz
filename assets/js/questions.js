@@ -42,21 +42,43 @@ const questions = [
         ]
     },
     {
-        question: "What is the capital of Japan?",
+        question: "What will be the output for the following code snippet?",
+        image: "assets/images/quest2.PNG",
         choices: [
-            {text: "Tokyo", isCorrect: true},
-            {text: "Seoul", isCorrect: false},
-            {text: "Beijing", isCorrect: false},
-            {text: "Shanghai", isCorrect: false}
+            {text: "9", isCorrect: true},
+            {text: "81", isCorrect: false},
+            {text: "Error", isCorrect: false},
+            {text: "0", isCorrect: false}
         ]
     },
     {
-        question: "What is the capital of United States?",
+        question: "What will be the output of the following code snippet?",
+        image: "assets/images/question.PNG",
         choices: [
-            {text: "New York", isCorrect: false},
-            {text: "Los Angeles", isCorrect: false},
-            {text: "Washington D.C.", isCorrect: true},
-            {text: "San Francisco", isCorrect: false}
+            {text: "cal", isCorrect: false},
+            {text: "ale", isCorrect: false},
+            {text: "al.", isCorrect: true},
+            {text: "caler", isCorrect: false}
+        ]
+    },
+    {
+        question: "What is the output of the following code snippet?",
+        image: "assets/images/quest3.PNG",
+        choices: [
+            {text: "true", isCorrect: false},
+            {text: "undefined", isCorrect: false},
+            {text: "false", isCorrect: true},
+            {text: "Error", isCorrect: false}
+        ]
+    },
+    {
+        question: "What will be the output of the following code snippet?",
+        image: "assets/images/quest4.PNG",
+        choices: [
+            {text: "true", isCorrect: false},
+            {text: "undefined", isCorrect: false},
+            {text: "false", isCorrect: true},
+            {text: "None of the above", isCorrect: false}
         ]
     }
 ];
