@@ -12,6 +12,8 @@ let timeInterval;
 let currentQuestionIndex = 0;
 let score =0;
 
+
+
 startBtn.addEventListener("click", function(event){
     event.preventDefault()
     startTimer()
@@ -57,7 +59,7 @@ displayQuestion = function(questions) {
             if(choice.isCorrect) {
                 score++;
                 currentQuestionIndex++;
-                if((currentQuestionIndex < questions.length)||(time > 0)) {
+                if(currentQuestionIndex < questions.length) {
                     displayQuestion(questions);
                 } else {
                     endGame()
@@ -89,20 +91,31 @@ endGame = function () {
     end.setAttribute("class","start")
     questionDiv.setAttribute("class","hide")
     finaScore.textContent  = score
-    submit.addEventListener("click",function(){
-        let name = initials.value
-        localStorage.setItem("name",name)
-        localStorage.setItem("score",score)
-        window.location = "highscores.html"
-    })
 
 }
 
+function storeScore () {
+    
+    
+}    
 
     
-    
-    
+
+
+submit.addEventListener("click",function(){
+        let name = initials.value
+        storedScores = JSON.parse(localStorage.getItem("storedScores")) || []
+        let  newScore ={
+            scor: score,
+            player: name
+        }
+        storedScores.push(newScore)
+        localStorage.setItem("storedScores", JSON.stringify(storedScores))
+       
+        window.location = "highscores.html"
+    })
+
+
    
-
 
 
