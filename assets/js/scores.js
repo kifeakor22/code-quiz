@@ -1,5 +1,6 @@
 let highscores = document.getElementById("highscores")
  let highScore = JSON.parse(localStorage.getItem("storedScores"))
+ let clear = document.getElementById("clear")
 
 
 for(i=0; i< highScore.length; i++){
@@ -8,3 +9,8 @@ for(i=0; i< highScore.length; i++){
     highscores.appendChild(li)
 }
 
+
+clear.addEventListener("click", function(event){
+    localStorage.clear()
+    highscores.textContent = ""
+})
