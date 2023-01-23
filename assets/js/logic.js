@@ -34,7 +34,7 @@ function startTimer() {
    time = 60;  
    timeInterval = setInterval(function () {
     time--; 
-    timeSpan.textContent = `${time} seconds remaining`; 
+    timeSpan.textContent = `${time} seconds`; 
     if(time === 0) {
       clearInterval(timeInterval); // clearinterval takes setinterval as argument
       endGame()
