@@ -94,7 +94,7 @@ displayQuestion = function(questions) {
                     currentQuestionIndex++;
                     setTimeout(function(){
                         feedback.textContent = "";
-                        feedback.setAttribute("class", "hide")
+                        feedback.setAttribute("class", "hide");
                     },1500);
                     if(currentQuestionIndex < questions.length){
                         displayQuestion(questions);

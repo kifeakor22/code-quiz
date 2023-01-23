@@ -11,25 +11,23 @@ const questions = [
         ]
     },
     {
-        question: "How can a datatype be declared to be a constant type?",
+        question: "What happens when we run this code?",
+        image: "assets/images/quest6.PNG",     
         choices: [
-            {text: "var", isCorrect: false},
-            {text: "const", isCorrect: true},
-            {text: "let", isCorrect: false},
-            {text: "All of the above", isCorrect: false}
+            {text: "Syntax Error", isCorrect: false},
+            {text: "I am a dog gets printed?", isCorrect: false},
+            {text: "ReferenceError", isCorrect: false},
+            {text: "Nothing happens", isCorrect: true}
         ]
     },
     {
-        question: `What will be the output of the following code snippet?
-                   <script type="text/javascript">
-                   a = 5 + "9";
-                   document.write(a);
-                   </script>`,
+        question: `What will be the output of the following code snippet?`,
+        image: "assets/images/quest6.PNG",           
         choices: [
-            {text: "Compilation Error", isCorrect: false},
-            {text: "59", isCorrect: true},
-            {text: "14", isCorrect: false},
-            {text: "Runtime Error", isCorrect: false}
+            {text: "2", isCorrect: false},
+            {text: "6", isCorrect: true},
+            {text: "1", isCorrect: false},
+            {text: "None of the above", isCorrect: false}
         ]
     },
     {
@@ -78,6 +76,16 @@ const questions = [
             {text: "true", isCorrect: false},
             {text: "undefined", isCorrect: false},
             {text: "false", isCorrect: true},
+            {text: "None of the above", isCorrect: false}
+        ]
+    },
+    {
+        question: "What will be the output of the following code snippet?",
+        image: "assets/images/quest5.PNG",
+        choices: [
+            {text: "Object", isCorrect: false},
+            {text: "String", isCorrect: false},
+            {text: "Number", isCorrect: true},
             {text: "None of the above", isCorrect: false}
         ]
     }
