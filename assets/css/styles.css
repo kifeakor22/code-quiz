@@ -1,3 +1,8 @@
+.wrapper {
+  padding-top: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
 body {
   font-family: Arial;
   font-size: 120%;
@@ -11,6 +16,9 @@ a {
 
 a:hover {
   color: #8570a5;
+}
+.image {
+  width: 100%
 }
 
 button {
@@ -38,7 +46,6 @@ button:hover {
 
 .choices button {
   display: block;
-  height: 40px;
 }
 
 input[type="text"] {
