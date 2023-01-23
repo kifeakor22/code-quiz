@@ -1,3 +1,4 @@
+// variables
 let startBtn = document.getElementById("start")
 let timeSpan = document.getElementById("time")
 let questionDiv =document.getElementById("questions")
@@ -15,6 +16,7 @@ let currentQuestionIndex = 0;
 let score =0;
 
 
+// start game with start button click event
 
 startBtn.addEventListener("click", function(event){
     event.preventDefault()
@@ -32,7 +34,7 @@ function startTimer() {
    time = 60;  
    timeInterval = setInterval(function () {
     time--; 
-    timeSpan.textContent = `${time} seconds`; 
+    timeSpan.textContent = `${time} seconds remaining`; 
     if(time === 0) {
       clearInterval(timeInterval); // clearinterval takes setinterval as argument
       endGame()
@@ -40,22 +42,22 @@ function startTimer() {
   },1000);  
 }
 
-
-
-
+// display question function 
 
 displayQuestion = function(questions) {
-    questionDiv.setAttribute("class","start")
-    document.getElementById("start-screen").setAttribute("class","hide")
-    let currentQuestion = questions[currentQuestionIndex];
-    questionTitle.textContent = currentQuestion.question;
+    questionDiv.setAttribute("class","start") // show question div
+    document.getElementById("start-screen").setAttribute("class","hide") // hide start page div
+    let currentQuestion = questions[currentQuestionIndex]; // get current question
+    questionTitle.textContent = currentQuestion.question; // display current question title on question title div
+    // check if current question contains an image and display it
     if(currentQuestion.image){
         questImage.src = currentQuestion.image
     }
-    
+    // clear any previous choices 
+    choices.textContent = ""; 
 
-    choices.textContent = ""; // clear any previous choices
-    
+    // loop through Currrent question choices and display them as buttons 
+
     for(let i = 0; i < currentQuestion.choices.length; i++) {
         let choice = currentQuestion.choices[i];
         let choiceList = document.createElement("ol")
@@ -71,6 +73,11 @@ displayQuestion = function(questions) {
                  feedback.textContent = "Correct"
                 score++;
                 currentQuestionIndex++;
+                 setTimeout(function(){
+                    feedback.textContent = "";
+                    feedback.setAttribute("class", "hide")
+                 }, 1500);
+
                 if(currentQuestionIndex < questions.length) { 
                     displayQuestion(questions);
                 } else {
@@ -85,6 +92,10 @@ displayQuestion = function(questions) {
                     feedback.setAttribute("class", "wrong")
                     feedback.textContent = "Wrong!"
                     currentQuestionIndex++;
+                    setTimeout(function(){
+                        feedback.textContent = "";
+                        feedback.setAttribute("class", "hide")
+                    },1500);
                     if(currentQuestionIndex < questions.length){
                         displayQuestion(questions);
                     }else {
@@ -100,7 +111,7 @@ displayQuestion = function(questions) {
     } 
    
 }
-
+// show feedback div
 function showFeedback() {
     if(choice.isCorrect){
         feedback.setAttribute("class", "start")
@@ -114,6 +125,8 @@ function showFeedback() {
      
 }
 
+// End game function 
+
 endGame = function () {
     end.setAttribute("class","start")
     questionDiv.setAttribute("class","hide")
@@ -121,14 +134,7 @@ endGame = function () {
 
 }
 
-function storeScore () {
-    
-    
-}    
-
-    
-
-
+// submit button event 
 submit.addEventListener("click",function(){
         let name = initials.value
         storedScores = JSON.parse(localStorage.getItem("storedScores")) || []
